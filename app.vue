@@ -20,50 +20,46 @@
     <div class="relative z-10">
       <div class="text-center">
         <h1 class="text-6xl font-bold tracking-tight text-gray-900">
+          <!-- Main - domin.inc -->
           <span class="inline-flex relative">
-            <!-- Base text -->
+            <!-- Base text - "domin" -->
             <span
               v-for="(char, index) in 'domin'"
               :key="`base-${index}`"
-              class="char-animate"
+              class="char char-animate"
               :style="{
                 '--char-delay': `${index * 0.05}s`,
               }"
               >{{ char }}</span
             >
 
-            <!-- Transitioning characters -->
+            <!-- Transition out - "ic" -->
             <span
-              v-if="!showFinal"
-              class="char-animate fade-out"
-              :style="{
-                '--char-delay': `${5 * 0.05}s`,
-              }"
+              v-if="!showInc"
+              class="char char-animate fade-out"
+              :style="{ '--char-delay': `${5 * 0.05}s` }"
               >i</span
             >
             <span
-              v-if="!showFinal"
-              class="char-animate fade-out"
-              :style="{
-                '--char-delay': `${6 * 0.05}s`,
-              }"
+              v-if="!showInc"
+              class="char char-animate fade-out"
+              :style="{ '--char-delay': `${6 * 0.05}s` }"
               >c</span
             >
 
-            <!-- Final additions -->
-            <template v-if="showFinal">
-              <span class="inc-slide-unused">
-                <span
-                  v-for="(char, index) in '.inc'"
-                  :key="`sub-${index}`"
-                  class="char char-slide-down"
-                  :style="{ '--char-delay': `${index * 0.05}s` }"
-                  >{{ char }}</span
-                >
-              </span>
+            <!-- Transition in - ".inc" -->
+            <template v-if="showInc">
+              <span
+                v-for="(char, index) in '.inc'"
+                :key="`sub-${index}`"
+                class="char char-slide-down"
+                :style="{ '--char-delay': `${index * 0.05}s` }"
+                >{{ char }}</span
+              >
             </template>
           </span>
         </h1>
+        <!-- Subheading - "consulting" -->
         <div class="h-12 relative">
           <h2
             v-if="showConsulting"
@@ -86,16 +82,14 @@
 </template>
 
 <script setup>
-const showFinal = ref(false);
+const showInc = ref(false);
 const showConsulting = ref(false);
 
 onMounted(() => {
   setTimeout(() => {
-    showFinal.value = true;
-    // Show consulting text 350ms after .inc appears
-    setTimeout(() => {
-      showConsulting.value = true;
-    }, 350);
+    showInc.value = true;
+    // Show "consulting" text 350ms after .inc appears
+    setTimeout(() => (showConsulting.value = true), 350);
   }, 1250);
 });
 </script>
@@ -105,15 +99,6 @@ onMounted(() => {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* top: -50%;
-  left: -50%; */
-  /* background: radial-gradient(circle at center, 
-    rgba(139, 92, 246, 0.15) 0%,
-    rgba(59, 130, 246, 0.15) 25%,
-    rgba(236, 72, 153, 0.15) 50%,
-    rgba(139, 92, 246, 0.15) 75%,
-    rgba(59, 130, 246, 0.15) 100%
-  ); */
   filter: blur(40px);
   animation: rotate 20s linear infinite;
   transform-origin: center center;
@@ -202,17 +187,6 @@ onMounted(() => {
 .fade-out {
   animation: morphCharacter 0.5s ease-out forwards var(--char-delay),
     fadeOut 0.5s ease-out forwards 2s;
-}
-
-.period-slide {
-  opacity: 0;
-  display: inline-block;
-  animation: slideIn 0.5s ease-out forwards;
-}
-
-.inc-slide {
-  opacity: 0;
-  animation: slideDown 0.5s ease-out forwards;
 }
 
 .consulting-slide {
