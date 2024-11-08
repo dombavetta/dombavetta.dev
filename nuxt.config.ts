@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'dominic, inc',
+      meta: [{ name: 'description', content: 'dominic, inc consulting. hire me.' }],
       link: [{ rel: 'icon', href: 'https://fav.farm/💩' }]
     }
   }
