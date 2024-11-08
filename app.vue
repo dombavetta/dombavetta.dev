@@ -5,6 +5,7 @@
       <div class="wave-gradient"></div>
     </div>
 
+    <!-- Heading -->
     <div class="relative z-10">
       <div class="text-center">
         <h1 class="text-6xl font-bold tracking-tight text-gray-900">
@@ -40,7 +41,17 @@
 
             <!-- Final additions -->
             <template v-if="showFinal">
-              <span class="period-slide">.inc</span>
+              <span class="period-slide">
+                <span
+                  v-for="(char, index) in '.inc'"
+                  :key="`sub-${index}`"
+                  class="char-animate"
+                  :style="{
+                    '--char-delay': `${index * 0.05}s`,
+                  }"
+                  >{{ char }}</span
+                >
+              </span>
             </template>
           </span>
         </h1>
