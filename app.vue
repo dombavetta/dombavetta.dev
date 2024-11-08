@@ -1,9 +1,19 @@
 <template>
-  <div class="min-h-screen bg-gray-50 flex items-center justify-center">
+  <div class="max-w-screen min-h-screen bg-gray-50 flex items-center justify-center overflow-hidden">
     <!-- Gradient background -->
     <div class="absolute inset-0 overflow-hidden">
       <div class="wave-gradient"></div>
     </div>
+
+    <!-- <div
+      class="roll absolute bottom-0 left-0 bg-white bg-opacity-40 rounded-full border-4 border-[#eed0d0] overflow-hidden"
+      :style="{
+        '--travel-time': '3s',
+        '--spin-rate': '650ms'
+      }"
+      >
+      <img src="~/assets/images/me.png" alt="Doms Avator, hes appears handsome 🙂" class="spin h-[80px]" />
+    </div> -->
 
     <!-- Heading -->
     <div class="relative z-10">
@@ -41,14 +51,12 @@
 
             <!-- Final additions -->
             <template v-if="showFinal">
-              <span class="inc-slide">
+              <span class="inc-slide-unused">
                 <span
                   v-for="(char, index) in '.inc'"
                   :key="`sub-${index}`"
-                  class="char-animate"
-                  :style="{
-                    '--char-delay': `${index * 0.05}s`,
-                  }"
+                  class="char char-slide-down"
+                  :style="{ '--char-delay': `${index * 0.05}s` }"
                   >{{ char }}</span
                 >
               </span>
@@ -129,6 +137,36 @@ onMounted(() => {
   }
 }
 
+.roll {
+  animation: roll var(--travel-time) linear forwards;
+}
+
+.spin {
+  animation: spin var(--spin-rate) linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes roll {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+.char {
+  display: inline-block;
+}
+
 .char-animate {
   display: inline-block;
   opacity: 0;
@@ -155,6 +193,12 @@ onMounted(() => {
 .consulting-slide {
   opacity: 0;
   animation: slideUp 0.5s ease-out forwards;
+}
+
+.char-slide-down {
+  opacity: 0;
+  animation: slideDown 0.5s ease-out forwards;
+  animation-delay: var(--char-delay);
 }
 
 @keyframes morphCharacter {
