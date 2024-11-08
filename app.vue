@@ -41,7 +41,7 @@
 
             <!-- Final additions -->
             <template v-if="showFinal">
-              <span class="period-slide">
+              <span class="inc-slide">
                 <span
                   v-for="(char, index) in '.inc'"
                   :key="`sub-${index}`"
@@ -147,6 +147,11 @@ onMounted(() => {
   animation: slideIn 0.5s ease-out forwards;
 }
 
+.inc-slide {
+  opacity: 0;
+  animation: slideDown 0.5s ease-out forwards;
+}
+
 .consulting-slide {
   opacity: 0;
   animation: slideUp 0.5s ease-out forwards;
@@ -182,6 +187,17 @@ onMounted(() => {
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
