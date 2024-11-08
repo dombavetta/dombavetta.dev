@@ -2,7 +2,8 @@
   <div class="max-w-screen min-h-screen bg-gray-50 flex items-center justify-center overflow-hidden">
     <!-- Gradient background -->
     <div class="absolute inset-0 overflow-hidden">
-      <div class="wave-gradient"></div>
+      <div class="wave-gradient top"></div>
+      <div class="wave-gradient bottom"></div>
     </div>
 
     <!-- <div
@@ -104,6 +105,21 @@ onMounted(() => {
   position: absolute;
   width: 100%;
   height: 100%;
+  /* top: -50%;
+  left: -50%; */
+  /* background: radial-gradient(circle at center, 
+    rgba(139, 92, 246, 0.15) 0%,
+    rgba(59, 130, 246, 0.15) 25%,
+    rgba(236, 72, 153, 0.15) 50%,
+    rgba(139, 92, 246, 0.15) 75%,
+    rgba(59, 130, 246, 0.15) 100%
+  ); */
+  filter: blur(40px);
+  animation: rotate 20s linear infinite;
+  transform-origin: center center;
+}
+
+.wave-gradient.top {
   top: -50%;
   left: -50%;
   background: radial-gradient(circle at center, 
@@ -113,9 +129,18 @@ onMounted(() => {
     rgba(139, 92, 246, 0.15) 75%,
     rgba(59, 130, 246, 0.15) 100%
   );
-  filter: blur(40px);
-  animation: rotate 20s linear infinite;
-  transform-origin: center center;
+}
+
+.wave-gradient.bottom {
+  top: 50%;
+  left: 50%;
+  background: radial-gradient(circle at center, 
+    rgba(205, 92, 246, 0.15) 0%,
+    rgba(59, 159, 246, 0.15) 25%,
+    rgba(72, 236, 159, 0.15) 50%,
+    rgba(246, 244, 92, 0.15) 75%,
+    rgba(246, 106, 59, 0.15) 100%
+  );
 }
 
 .wave-gradient::after {
