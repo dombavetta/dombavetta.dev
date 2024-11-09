@@ -1,20 +1,20 @@
 <template>
-  <div class="max-w-screen min-h-screen bg-gray-50 flex items-center justify-center overflow-hidden">
+  <div class="w-screen h-screen bg-gray-50 flex items-center justify-center overflow-hidden">
     <!-- Gradient background -->
     <div class="absolute inset-0 overflow-hidden">
       <div class="wave-gradient top"></div>
       <div class="wave-gradient bottom"></div>
     </div>
 
-    <!-- <div
-      class="roll absolute bottom-0 left-0 bg-white bg-opacity-40 rounded-full border-4 border-[#eed0d0] overflow-hidden"
+    <div
+      class="roll absolute bottom-0 left-0 -translate-x-full bg-white bg-opacity-40 rounded-full border-4 border-[#eed0d0] overflow-hidden"
       :style="{
         '--travel-time': '3s',
         '--spin-rate': '650ms'
       }"
       >
       <img src="~/assets/images/me.png" alt="Doms Avator, hes appears handsome 🙂" class="spin h-[80px]" />
-    </div> -->
+    </div>
 
     <!-- Heading -->
     <div class="relative z-10">
@@ -149,6 +149,7 @@ onMounted(() => {
 
 .roll {
   animation: roll var(--travel-time) linear forwards;
+  animation-delay: 3.5s;
 }
 
 .spin {
